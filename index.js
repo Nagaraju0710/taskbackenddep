@@ -12,6 +12,11 @@ app.use(express.json());
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
+app.get("/",(req,res)=>{
+  res.status(200).send({"msg":"This is a GraphTalk Dashboard"})
+})
+
+
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/user', require('./routes/user'));
 
