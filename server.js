@@ -16,6 +16,10 @@ app.get("/",(req,res)=>{
     res.status(200).send({"msg":"This is a Home page"})
 })
 
+app.get("/amo",(req,res)=>{
+    res.status(200).send({"msg":"This is a Home page"})
+})
+
 app.use("/users",userRoutes)
 app.use("/posts",postsRoutes)
 app.use("/allposts",allPostRouter)
