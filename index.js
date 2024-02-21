@@ -1,36 +1,39 @@
-const express= require("express")
-const {connection}= require("./db");
-const {userRoutes}= require("./routes/user.routes")
-const {postsRoutes}=require("./routes/posts.router")
-const { allPostRouter } = require('./routes/allPost.Route')
-const { contactRouter } = require('./routes/contactRouter')
-const cors=require("cors")
-require("dotenv").config()
-const app= express();
 
 
-app.use(express.json());
-app.use(cors())
+const express = require('express')
+const {userRouter} = require('./routes/user.Router')
+const {productRouter}= require('./routes/product.Routes')
+const {vehicleRouter}= require('./routes/vehicle.Routes')
+const {vendorRouter}= require('./routes/vendor.Routes')
+const bodyParser = require('body-parser');
 
-app.get("/",(req,res)=>{
-    res.status(200).send({"msg":"This is a Home page"})
+const cors = require('cors')
+const {connection} = require('./db')
+
+const app = express()
+app.use(cors());
+app.use(express.json())
+
+
+
+app.get('/',(req,res)=>{
+    res.status(200).send({"msg":"this is the homepage"})
 })
 
 
+app.use('/users',userRouter)
+app.use('/product' , productRouter)
+app.use('/vehicle', vehicleRouter)
+app.use('/vendor', vendorRouter)
 
-app.use("/users",userRoutes)
-app.use("/posts",postsRoutes)
-app.use("/allposts",allPostRouter)
-app.use('/contact',contactRouter)
+const PORT = process.env.PORT || 8080;
 
-const PORT=process.env.port
-
-app.listen(PORT,async()=>{
-    try{
+app.listen(PORT, async()=>{
+     try{
          await connection
-         console.log("Server is connected to Db")
-         console.log(`Server is running at ${PORT}`)
-    }catch(err){
-        console.log(err)
-    }
+         console.log('Connected to DB')
+         console.log('Server is running at port 8080')
+     }catch(err){
+        console.log("Error:",err)
+     }
 })
