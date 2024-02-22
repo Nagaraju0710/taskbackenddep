@@ -1,6 +1,6 @@
 const express = require('express');
 const vehicleRouter = express.Router();
-const VehicleModel = require('../model/vehicle.model');
+const {VehicleModel} = require('../model/vehicle.model');
 const cors=require("cors")
 
 vehicleRouter.use(cors())
