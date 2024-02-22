@@ -7,8 +7,8 @@ const vehicleSchema = mongoose.Schema({
     dcNumber: {type:String},
     poNumber:{type:String},
     checkedOut: { type: Boolean, default: false },
-    securityCheckStatus: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' }
-    
+    securityCheckStatus: { type: String, enum: ['Pending', 'Approved', 'Rejected'], default: 'Pending' },
+    image:{type:String}
 },
     { versionKey: false }
 )
